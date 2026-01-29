@@ -1,5 +1,7 @@
-const inquirer = require('inquirer');
-const { mainMenu } = require('./menu');
+import inquirer from "inquirer";
+
+import { mainMenu } from "./menu"
+
 const pin = '123456';
 let balance = 450;
 const receiverAccount = '123123';
@@ -53,11 +55,11 @@ function showAccountBalance() {
   confirmation();
 }
 
-function _isSufficientBalance(amount) {
+function _isSufficientBalance(amount: number) {
   return amount < balance;
 }
 
-function withdraw(amount) {
+function withdraw(amount: number) {
   if (_isSufficientBalance(amount)) {
     balance -= amount;
     console.log(`Withdraw success, you withdraw $${amount}`);
@@ -69,7 +71,7 @@ function withdraw(amount) {
   confirmation();
 }
 
-function deposit(amount) {
+function deposit(amount: number) {
   balance += amount;
   console.log(`Deposit success, you deposit $${amount}`);
   console.log(`Your Account Balance: $${balance}`);
@@ -77,20 +79,20 @@ function deposit(amount) {
   confirmation();
 }
 
-function _isMatchAccountNumber(accountNumber) {
+function _isMatchAccountNumber(accountNumber: string) {
   return receiverAccount === accountNumber;
 }
 
-function transfer(receiverNumber, amount) {
+function transfer(receiverNumber: string, amount: number) {
   if (_isMatchAccountNumber(receiverNumber) && _isSufficientBalance(amount)) {
     balance -= amount;
     receiverBalance += amount;
 
     console.log(`Transfer $${amount} to ${receiverNumber} success`);
     console.log(`Your Account Balance: $${balance}`);
-  } else if(!_isMatchAccountNumber(receiverNumber)) {
+  } else if (!_isMatchAccountNumber(receiverNumber)) {
     console.log(`Account ${receiverNumber} not found`);
-  } else if(!_isSufficientBalance(amount)) {
+  } else if (!_isSufficientBalance(amount)) {
     console.log(`Your Account Balance: $${balance}, is not sufficient to transfer $${amount}`);
   }
 

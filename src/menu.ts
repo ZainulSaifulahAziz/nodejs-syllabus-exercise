@@ -1,4 +1,5 @@
-const inquirer = require('inquirer');
+import inquirer from "inquirer";
+
 const MENU = {
   ACCOUNT_BALANCE: 'View account balance',
   WITHDRAW: 'Withdraw cash',
@@ -6,7 +7,7 @@ const MENU = {
   TRANSFER: 'Transfer funds',
 };
 
-function mainMenu(accountBalance, withdraw, deposit, transfer) {
+export function mainMenu(accountBalance: Function, withdraw: Function, deposit: Function, transfer: Function) {
   inquirer
     .prompt({
       type: 'list',
@@ -14,7 +15,7 @@ function mainMenu(accountBalance, withdraw, deposit, transfer) {
       message: 'Welcome, Please select your transaction',
       choices: Object.values(MENU),
     })
-    .then((answers) => {
+    .then((answers: Record<string, any>) => {
       switch (answers.menu) {
         case MENU.ACCOUNT_BALANCE:
           accountBalanceMenu(accountBalance);
@@ -34,11 +35,11 @@ function mainMenu(accountBalance, withdraw, deposit, transfer) {
     });
 }
 
-function accountBalanceMenu(accountBalance) {
+function accountBalanceMenu(accountBalance: Function) {
   accountBalance();
 }
 
-function withdrawMenu(withdraw) {
+function withdrawMenu(withdraw: Function) {
   inquirer
     .prompt({
       type: 'input',
@@ -55,7 +56,7 @@ function withdrawMenu(withdraw) {
     });
 }
 
-function depositMenu(deposit) {
+function depositMenu(deposit: Function) {
   inquirer
     .prompt({
       type: 'input',
@@ -72,7 +73,7 @@ function depositMenu(deposit) {
     });
 }
 
-function transferMenu(transfer) {
+function transferMenu(transfer: Function) {
   inquirer
   .prompt([{
     type: 'input',
@@ -97,7 +98,3 @@ function transferMenu(transfer) {
     transfer(answers.receiverNumber, answers.amount);
   });
 }
-
-module.exports = {
-  mainMenu,
-};
