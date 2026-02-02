@@ -1,11 +1,11 @@
 import inquirer from "inquirer";
 
-import { mainMenu } from "./menu"
+import { mainMenu } from "./menu";
+import { Account } from "./entity/account";
 
-const pin = '123456';
-let balance = 450;
-const receiverAccount = '123123';
-let receiverBalance = 350;
+const accountA = new Account("1", "John Doe", "123456", 450, );
+const accountB = new Account("2", "Michael Roe", "123456", 350);
+
 const OPTIONS = {
   YES: 'Yes',
   NO: 'No',
