@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/franken-ui@2.1.2/dist/css/core.min.css" />
+  <title>ATM Machine</title>
+</head>
+
+<body class="bg-neutral-100">
+  <h1 class="text-3xl font-bold m-2">Welcome to ATM Machine</h1>
+  <div class="uk-card uk-card-body m-2 w-xl shadow-md">
+    <div class="grid grid-cols-2 gap-4">
+      <h1 class="text-xl font-bold m-2">Your Balance:</h1>
+      <h1 class="text-xl font-bold m-2 align-center">$ {{balance}}</h1>
+    </div>
+    <div class="text-end">
+      <a class="uk-btn uk-btn-primary" href="/">Home</a>
+    </div>
+  </div>
+
+</body>
+
+</html>

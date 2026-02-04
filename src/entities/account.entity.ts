@@ -1,18 +1,21 @@
-import { Transaction, Mutation } from "./transaction";
+import { Mutation } from "../types";
+import { Transaction } from "./transaction.entity";
 
 export class Account {
-  private id: string;
-  private name: string;
-  private pin: string;
-  private balance: number;
-  private transactions: Transaction[];
+  id: string;
+  code: string;
+  name: string;
+  pin: string;
+  balance: number;
+  transactions: Transaction[];
 
-  constructor(id: string, name: string, pin: string, balance: number) {
+  constructor(id: string, code: string, name: string, pin: string, balance: number, transactions: Transaction[]) {
     this.id = id;
+    this.code = code;
     this.name = name;
     this.pin = pin;
     this.balance = balance;
-    this.transactions = []
+    this.transactions = transactions;
   }
 
   withdraw(amount: number): number {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/franken-ui@2.1.2/dist/css/core.min.css" />
+  <title>ATM Machine</title>
+</head>
+
+<body class="bg-neutral-100">
+  <h1 class="text-3xl font-bold m-2">Welcome to ATM Machine</h1>
+  <div class="uk-card uk-card-body m-2 w-xl shadow-md">
+    <h1 class="text-xl font-bold mb-5">Login</h1>
+    <form class="uk-form-stacked space-y-4" action="/login" method="post">
+      <div>
+        <label class="uk-form-label block">Account Number</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="text" name="code" />
+        </div>
+      </div>
+      <div>
+        <label class="uk-form-label block">PIN</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" type="password" name="pin" />
+        </div>
+      </div>
+      <div>
+        <div class="uk-form-controls text-end">
+          <button type="submit" class="uk-btn uk-btn-primary">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "code": "12345",
+    "name": "John Doe",
+    "pin": "123456",
+    "balance": 500,
+    "transactions": [
+      {
+        "date": "2026-01-01T00:00:00.000Z",
+        "description": "Cash Deposit",
+        "mutation": "CREDIT",
+        "amount": 500,
+        "balance": 500
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "code": "12346",
+    "name": "Michael Roe",
+    "pin": "123456",
+    "balance": 450,
+    "transactions": [
+      {
+        "date": "2026-01-01T00:00:00.000Z",
+        "description": "Cash Deposit",
+        "mutation": "CREDIT",
+        "amount": 450,
+        "balance": 450
+      }
+    ]
+  }
+]
