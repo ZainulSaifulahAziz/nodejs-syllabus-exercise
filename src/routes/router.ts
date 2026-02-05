@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import process from "node:process";
 
-import { IncomingMessage, Route } from "../types";
+import { Route } from "../types";
 
 export class Router {
   private routes: Route[];
@@ -12,7 +12,7 @@ export class Router {
     this.routes = routes;
   }
 
-  async process(method: string, path: string, req: IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+  async process(method: string, path: string, req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
     const route = this.routes.find((item) => item?.method === method && item.path === path)
 
     if (!route) {

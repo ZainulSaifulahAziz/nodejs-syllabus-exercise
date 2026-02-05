@@ -6,11 +6,10 @@ import mustache from "mustache";
 
 import AccountRepository from "../repositories/account.repository";
 import { getRequestBody } from "../utils";
-import { IncomingMessage } from "../types";
 
 export default class ATMController {
-  homePage(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  homePage(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
 
     if (!id) {
       res.writeHead(302, { location: '/login' }).end();
@@ -28,14 +27,14 @@ export default class ATMController {
     res.end();
   }
 
-  favicon(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
+  favicon(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
     const output = readFileSync(path.join(process.cwd(), "src/public", 'favicon.ico'))
     res.write(output);
     res.end();
   }
 
-  transactionPage(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  transactionPage(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
 
     if (!id) {
       res.writeHead(302, { location: '/login' }).end();
@@ -53,8 +52,8 @@ export default class ATMController {
     res.end();
   }
 
-  withdrawPage(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  withdrawPage(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
 
     if (!id) {
       res.writeHead(302, { location: '/login' }).end();
@@ -68,8 +67,8 @@ export default class ATMController {
     res.end();
   }
 
-  depositPage(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  depositPage(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
 
     if (!id) {
       res.writeHead(302, { location: '/login' }).end();
@@ -83,8 +82,8 @@ export default class ATMController {
     res.end();
   }
 
-  transferPage(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  transferPage(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
 
     if (!id) {
       res.writeHead(302, { location: '/login' }).end();
@@ -98,8 +97,8 @@ export default class ATMController {
     res.end();
   }
 
-  balancePage(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  balancePage(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
 
     if (!id) {
       res.writeHead(302, { location: '/login' }).end();
@@ -118,8 +117,8 @@ export default class ATMController {
     res.end();
   }
 
-  loginPage(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  loginPage(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
 
     if (id) {
       res.writeHead(302, { location: '/' }).end();
@@ -133,7 +132,7 @@ export default class ATMController {
     res.end();
   }
 
-  async login(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
+  async login(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
     const body = await getRequestBody(req);
     const accountRepository = AccountRepository.getInstance();
     const account = accountRepository.findOneByCode(body.code)
@@ -143,13 +142,13 @@ export default class ATMController {
       return;
     }
 
-    req.sessions.id = account.id;
+    req.session.id = account.id;
     res.writeHead(302, { location: `/` }).end();
     return;
   }
 
-  async withdraw(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  async withdraw(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
     let body = await getRequestBody(req);
 
     if (!id) {
@@ -166,8 +165,8 @@ export default class ATMController {
     return;
   }
 
-  async deposit(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  async deposit(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
     let body = await getRequestBody(req);
 
     if (!id) {
@@ -184,8 +183,8 @@ export default class ATMController {
     return;
   }
 
-  async transfer(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  async transfer(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
     let body = await getRequestBody(req);
 
     if (!id) {
@@ -205,15 +204,15 @@ export default class ATMController {
     return;
   }
 
-  async logout(req: IncomingMessage, res: http.ServerResponse<IncomingMessage>) {
-    const { id } = req.sessions;
+  async logout(req: http.IncomingMessage, res: http.ServerResponse<http.IncomingMessage>) {
+    const { id } = req.session;
 
     if (!id) {
       res.writeHead(302, { location: '/login' }).end();
       return;
     }
 
-    delete req.sessions.id;
+    delete req.session.id;
     res.writeHead(302, { location: `/login` }).end();
     return;
   }

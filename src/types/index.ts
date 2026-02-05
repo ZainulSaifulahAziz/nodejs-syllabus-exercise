@@ -29,5 +29,3 @@ export enum Mutation {
   DEBIT = "DEBIT",
   CREDIT = "CREDIT"
 }
-
-export interface IncomingMessage extends http.IncomingMessage { sessions: Record<string, any> }
